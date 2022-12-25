@@ -1,0 +1,104 @@
+<style>
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: black;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .container {
+        padding: 16px;
+        background-color: white;
+    }
+
+    input[type=text], input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+
+    input[type=text]:focus, input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+    }
+
+    hr {
+        border: 1px solid #f1f1f1;
+        margin-bottom: 25px;
+    }
+
+    .registerbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        opacity: 0.9;
+    }
+
+    .registerbtn:hover {
+        opacity: 1;
+    }
+
+    a {
+        color: dodgerblue;
+    }
+
+    .error {
+        font-size: large;
+        font-weight: bold;
+        color: darkred;
+    }
+
+</style>
+
+<form action="/changeUserEmail" method="post">
+    <div class="container">
+        <h1>Do you want to change username or email?</h1>
+        <br>
+        <hr>
+        <label>Username</label>
+        <input id="username" name="username" type="text">
+        <label>Email</label>
+        <div class="error">
+            {{ error.changeEmailUsername }}
+            {{ error.authorizationP }}
+        </div>
+        <input id="email" name="email" type="text">
+        <button class="registerbtn" type="submit">Send data</button>
+    </div>
+</form>
+
+<form action="/changePassword" method="post">
+    <div class="container">
+        <h1>Do jou want to change password?</h1>
+        <br>
+        <hr>
+        <label>Password which is now</label>
+        <input id="password" name="password" type="password">
+        <div class="error">
+            {{ error.changePassword }}
+            {{ error.authorizationE }}
+        </div>
+        <label>New password</label>
+        <input id="new-password" name="new-password" type="password">
+        <label>Repeat new password</label>
+        <div class="error">
+            {{ error.newPasswordChange }}
+        </div>
+        <input id="repeat-new-password" name="repeat-new-password" type="password">
+        <button class="registerbtn" type="submit">Send data</button>
+    </div>
+</form>
+<form action="/">
+    <div class="container">
+        <button type="submit" class="registerbtn">To the start</button>
+    </div>
+</form>

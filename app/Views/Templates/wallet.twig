@@ -1,0 +1,73 @@
+{% extends "template.twig" %}
+{% block header %}
+
+    <title>Wallet</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+    </style>
+    <body style="background: #020248">
+    <br>
+    <h1 class="text-3xl font-bold text-center text-teal-300" style="color: white">In your wallet bilance </h1>
+    <br>
+
+    <div class="container" style="margin: auto; width: 90%">
+
+        {% set rowCount=1 %}
+
+        {% for coin in wallet %}
+            {% if rowCount==1 %}
+                <div class="row">
+            {% endif %}
+
+            <div class="px-4 py-1">
+
+                {% if coin.count<0 %}
+                <div class="card text-white bg-danger mb-3" style="max-width: 14rem; background: darkred">
+                    <div class="card-header" style="font-weight: bold">{{ coin.symbol }}: {{ coin.count }}</div>
+                    <div class="card-body">
+                        <p class="card-text"><img src="{{ coin.logo }}"></p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+                    {% if coin.count>0 %}
+                    <div class="card text-black bg-light mb-3" style="max-width: 14rem;">
+
+
+                        <div class="card-header" style="font-weight: bold">{{ coin.symbol }}: {{ coin.count }}</div>
+                        <div class="card-body">
+                            <p class="card-text"><img src="{{ coin.logo }}"></p>
+                        </div>
+                    </div>
+                </div>
+        {% endif %}
+
+            {% set rowCount=rowCount+1 %}
+            {% if rowCount>7 %}
+                {% set rowCount=1 %}
+
+                </div>
+            {% endif %}
+
+        {% endfor %}
+
+    </div>
+    <br>
+
+    <form action="/" class="center">
+        <button class="font-bold text-white rounded"
+                style="width: 100px; height:50px; background: linear-gradient(to bottom, #FDFEFE, #03034E); ">
+            To the start
+        </button>
+        <br>
+        <br>
+    </form>
+    <br>
+    </body>
+{% endblock %}

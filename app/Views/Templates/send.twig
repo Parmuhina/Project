@@ -1,0 +1,122 @@
+{% extends "template.twig" %}
+{% block header %}
+    <title>Send crypto</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        form{
+
+        }
+        .error {
+            font-size: large;
+            font-weight: bold;
+            color: darkred;
+        }
+    </style>
+    <body style="background: #020248">
+    <br>
+
+    <h1 style="color: white; text-align: center; font-size: xx-large; font-weight: bold">Send coins to friend form</h1>
+    <br>
+    <div class="form-container">
+    <form >
+        <div class="container" style="margin: auto; width: 50%">
+
+            {% set rowCount=1 %}
+
+            {% for coin in wallet %}
+            {% if rowCount==1 %}
+            <div class="row">
+                {% endif %}
+
+                <div class="px-4 py-1">
+
+                    {% if coin.count<0 %}
+                    <div class="card text-white bg-danger mb-3" style="max-width: 14rem; background: darkred">
+                        <div class="card-header" style="font-weight: bold">{{ coin.symbol }}: {{ coin.count }}</div>
+                        <div class="card-body">
+                            <p class="card-text"><img src="{{ coin.logo }}"></p>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if coin.count>0 %}
+                <div class="card text-white bg-success mb-3" style="max-width: 14rem;">
+
+
+                    <div class="card-header" style="font-weight: bold">{{ coin.symbol }}: {{ coin.count }}</div>
+                    <div class="card-body">
+                        <p class="card-text"><img src="{{ coin.logo }}"></p>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+            {% set rowCount=rowCount+1 %}
+            {% if rowCount>4 %}
+            {% set rowCount=1 %}
+
+        </div>
+        {% endif %}
+
+        {% endfor %}
+
+        </div>
+    </form>
+
+    <br>
+    <form action="/send" method="post" style="text-align: center">
+        <div style="text-align: center" class="container">
+            <br>
+            <label class="px-4 py-2" style="font-size: large; color: white" for="numberSend"><b>Username of the
+                    recipient</b></label>
+            <input type="text" placeholder="Enter username" name="username" id="username">
+            <div class="error">
+                {{ errorSend.username }}
+            </div>
+
+            <br><br>
+            <label class="px-4 py-2" style="font-size: large;color: white" for="numberSend"><b>Number of coins to
+                    send</b></label>
+            <input type="text" placeholder="Enter how many" name="numberSend" id="num">
+            <div class="error">
+                {{ errorSend.numberSend }}
+            </div>
+
+            <label class="px-4 py-2" style="font-size: large;color: white" for="symbolSend"><b>Cryptocurrency to
+                    send</b></label>
+            <input type="text" placeholder="Enter crypto symbol" name="symbolSend" id="symbol">
+            <div class="error">
+                {{ errorSend.symbolSendCoins }}
+            </div>
+            <br>
+            <br>
+            <h1 class="text-2xl font-bold text-center text-teal-300" style="color: darkred">Please insert your password
+                for
+                secure
+            </h1>
+            <br>
+
+            <input type="password" placeholder="Enter your password" name="password" id="password">
+            <div class="error">
+                {{ errorSend.password }}
+            </div>
+            <br>
+            <button class="px-4 py-2 font-bold text-white bg-teal-600 rounded-full hover:bg-teal-500 focus:outline-none focus:shadow-outline-teal active:bg-teal-700">
+                Send
+            </button>
+        </div>
+
+    </form>
+
+    </body>
+    <form action="/" style="text-align: center">
+        <br>
+        <br>
+        <button class="px-4 py-2 font-bold text-white bg-teal-600 rounded-full hover:bg-teal-500 focus:outline-none focus:shadow-outline-teal active:bg-teal-700">
+            To the start
+        </button>
+
+    </form>
+    <br>
+    </body>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends "template.twig" %}
+{% block header %}
+
+    <title>Transactions</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .table {
+            margin-left: auto;
+            margin-right: auto;
+            width: 90%;
+        }
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+
+    <body style="background: #020248">
+    <div style="justify-content: center">
+        <form action="/">
+            <br>
+            <h1 class="text-3xl font-bold text-center text-teal-300" style="color: white">All your transactions
+                was </h1>
+            <br>
+            <table class="table table-striped table-hover" style="color: white">
+                <thead>
+                <tr>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                    <th>Value</th>
+                    <th>Profit</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for transaction in transactions %}
+                    <tr>
+                        <td>{{ transaction.symbol }}</td>
+                        <td>{{ transaction.price | round(2) }}</td>
+                        <td>{{ transaction.value | round(2) }}</td>
+                        <td>{{ transaction.paymount | round(2) }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <h2 class="text-3xl font-bold text-center text-teal-300" style="color: white">Your transactions bilance
+                is: {{ bilance.bilance | round(2) }}</h2>
+
+        </form>
+
+    </div>
+    <br>
+
+    <form action="/" class="center">
+        <button class="font-bold text-white rounded"
+                style="width: 100px; height:50px; background: linear-gradient(to bottom, #FDFEFE, #03034E); ">
+            To the start
+        </button>
+        <br>
+        <br>
+    </form>
+    <br>
+    </body>
+{% endblock %}
