@@ -48,5 +48,5 @@ You can copy project code from github and use it.
 need to make refresh):**
 
 1. How project looks like
-   ![](/home/darja/Desktop/Untitled.xcf)
+   <img height="200" src="/home/darja/Desktop/View.gif" width="200"/>
 2. 
