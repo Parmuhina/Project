@@ -24,5 +24,4 @@ class RequestCollection
     {
         return $this->requests;
     }
-
 }

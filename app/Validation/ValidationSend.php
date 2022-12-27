@@ -16,17 +16,18 @@ class ValidationSend
         $this->database = $database;
     }
 
-    public function validationSend(array $post)
+    public function validationSend(array $post, string $symbolSend)
     {
-        unset($_SESSION['errorSend']);
-
+        unset($_SESSION['numberSend']);
+        unset($_SESSION['password']);
+        unset($_SESSION['username']);
 
         $wallet = $this->variables->getValue();
         $symbols = [];
         foreach ($wallet as $coin) {
             $symbols[] = $coin['symbol'];
 
-            if ($coin['symbol'] === $post['symbolSend'] && $coin['count'] < $post['numberSend']) {
+            if ($coin['symbol'] === $symbolSend && $coin['count'] < $post['numberSend']) {
                 $_SESSION['errorSend']['numberSend'] = 'You send more than you have got.';
             }
         }
@@ -35,12 +36,7 @@ class ValidationSend
             $_SESSION['errorSend']['numberSend'] = 'Coin number not more than zero.';
         }
 
-        if (in_array($post['symbolSend'], $symbols) === false) {
-            $_SESSION['errorSend']['symbolSendCoins'] = 'Crypto is not in your wallet.';
-        }
-
         if (
-            strlen($post['symbolSend']) === 0 ||
             strlen($post['numberSend']) === 0 ||
             strlen($post['password']) === 0 ||
             strlen($post['username']) === 0

@@ -14,7 +14,7 @@ class RequestObject
     private float $volumeChange24h;
     private float $percentChange1h;
     private float $percentChange24h;
-    private string $logo;
+    private ?string $logo;
 
     public function __construct(
         string $name,
@@ -27,7 +27,7 @@ class RequestObject
         float $volumeChange24h,
         float $percentChange1h,
         float $percentChange24h,
-        string $logo
+        ?string $logo
     )
     {
         $this->name = $name;
@@ -93,7 +93,7 @@ class RequestObject
         return $this->percentChange24h;
     }
 
-    public function getLogo(): string
+    public function getLogo(): ?string
     {
         return $this->logo;
     }

@@ -1,0 +1,79 @@
+{% extends "template.twig" %}
+{% block header %}
+    <title>Send crypto</title>
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .error {
+            font-size: large;
+            font-weight: bold;
+            color: darkred;
+        }
+    </style>
+    <body style="background: #020248">
+
+    <br>
+    <div class="flex items-center justify-center">
+        <div class="card text-black mb-3 shadow-xl"
+             style="width:50%; color:black; text-align: center;background-color:#e2e2fd">
+            <h1 class="text-3xl font-bold text-center text-teal-300" style="color: black">You are sending {{ sendSymbol }}</h1>
+
+            <form action="/sendProfile" method="post">
+
+                <br>
+                <label class="px-4 py-2" style="font-size: large; color: black" for="numberSend"><b>Username of the
+                        recipient</b></label>
+                <label for="username"></label><input type="text" placeholder="Enter username" name="username"
+                                                     id="username" style="padding: 10px">
+                <div class="error">
+                    {{ errorSend.username }}
+                </div>
+
+                <br><br>
+                <label class="px-4 py-2" style="font-size: large;color: black" for="numberSend"><b>Number of coins to
+                        send</b></label>
+                <label for="num"></label><input type="text" placeholder="Enter how many" name="numberSend" id="num"
+                                                style="padding: 10px">
+                <div class="error">
+                    {{ errorSend.numberSend }}
+                </div>
+
+                <br>
+                <br>
+                <h1 class="text-2xl font-bold text-center text-teal-300" style="color: darkred">Please insert your
+                    password
+                    for
+                    secure
+                </h1>
+                <br>
+
+                <label for="password"></label><input type="password" placeholder="Enter your password" name="password"
+                                                     id="password" style="padding: 10px">
+                <div class="error">
+                    {{ errorSend.password }}
+                </div>
+                <br>
+                <button class="font-bold text-white rounded"
+                        style="width: 100px; height:50px; background: linear-gradient(to bottom, #FDFEFE, #03034E); ">
+                    Send
+                </button>
+
+            </form>
+
+            <form action="/" style="text-align: center">
+                <br>
+                <br>
+                <button class="font-bold text-white rounded"
+                        style="width: 100px; height:50px; background: linear-gradient(to bottom, #FDFEFE, #03034E); ">
+                    To the start
+                </button>
+
+            </form>
+            <br>
+            <br>
+        </div>
+    </div>
+    <br>
+    <br>
+    </body>
+
+{% endblock %}

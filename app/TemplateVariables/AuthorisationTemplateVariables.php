@@ -20,7 +20,7 @@ class AuthorisationTemplateVariables
 
         $user = $queryBuilder
             ->select('*')
-            ->from('new_schema.usersRegister')
+            ->from('user_schema.usersRegister')
             ->where('id=?')
             ->setParameter(0, $_SESSION['id'])
             ->fetchAssociative();

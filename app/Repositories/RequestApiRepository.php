@@ -7,7 +7,7 @@ use App\Models\RequestObject;
 
 class RequestApiRepository implements RequestRepository
 {
-    public function getRequest(string $convert, string $symbols): RequestCollection
+    public function getRequest(string $convert, ?string $symbols): RequestCollection
     {
         $apiKey = $_ENV['API_KEY'];
         $url = 'https://pro-api.coinmarketcap.com/v1/cryptocurrency/quotes/latest';
@@ -58,7 +58,7 @@ class RequestApiRepository implements RequestRepository
         return $requestCollection;
     }
 
-    private function logo(string $symbol):string
+    private function logo(?string $symbol):?string
     {
         $apiKey = $_ENV['API_KEY'];
         $url='https://pro-api.coinmarketcap.com/v2/cryptocurrency/info';

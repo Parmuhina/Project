@@ -24,16 +24,25 @@ class SendController
             'send.twig'
         );
     }
+    public function showSendProfile(array $vars): Template
+    {
+        $_SESSION['sendSymbol']=$vars['symbol'];
+        return new Template(
+            'sendProfile.twig', ['sendSymbol'=>$vars['symbol']]
+        );
+    }
 
     public function send(): Redirect
     {
-        $this->validationSend->validationSend($_POST);
+        unset($_SESSION['errorSend']);
+        $this->validationSend->validationSend($_POST, $_SESSION['sendSymbol']);
 
         if (!empty ($_SESSION['errorSend'])) {
-            return new Redirect('/send');
+            return new Redirect("/send/{$_SESSION['sendSymbol']}");
         }
 
-        $this->sendService->sendCoins($_POST);
+        $this->sendService->sendCoins($_POST, $_SESSION['sendSymbol']);
+        unset($_SESSION['sendSymbol']);
         return new Redirect('/');
     }
 }

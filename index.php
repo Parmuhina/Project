@@ -46,7 +46,8 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $rou
     $route->addRoute('GET', '/wallet', ['App\Controllers\WalletController', 'showWallet']);
     $route->addRoute('GET', '/transactions', ['App\Controllers\TransactionsController', 'showTransactions']);
     $route->addRoute('GET', '/send', ['App\Controllers\SendController', 'showSend']);
-    $route->addRoute('POST', '/send', ['App\Controllers\SendController', 'send']);
+    $route->addRoute('GET', '/send/{symbol}', ['App\Controllers\SendController', 'showSendProfile']);
+    $route->addRoute('POST', '/sendProfile', ['App\Controllers\SendController', 'send']);
 
 });
 

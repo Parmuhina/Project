@@ -23,10 +23,10 @@ class SendService
         $this->databaseRepository = $databaseRepository;
     }
 
-    public function sendCoins(array $post): void
+    public function sendCoins(array $post, string $sendSymbol): void
     {
         $userId = 0;
-        $price = $this->requestRepository->getRequest("EUR", $post['symbolSend'])->getRequests()[0]->getPrice();
+        $price = $this->requestRepository->getRequest("EUR", $sendSymbol)->getRequests()[0]->getPrice();
         foreach ($this->databaseRepository->getAllDatabase()->getUsers() as $user) {
             if ($user->getUsername() === $post['username']) {
                 $userId = $user->getId();
@@ -35,20 +35,20 @@ class SendService
 
         $this->symbolRepository->add(
             [
-                $post['symbolSend'],
+                $sendSymbol,
                 $price,
                 $post['numberSend'],
-                0,
+                -0.1,
                 $userId
             ]
         );
 
         $this->symbolRepository->add(
             [
-                $post['symbolSend'],
+                $sendSymbol,
                 $price,
                 $post['numberSend'],
-                0,
+                0.1,
                 $_SESSION['id']
             ]
         );

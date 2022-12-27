@@ -16,12 +16,12 @@ class WalletVariables
         $this->requestService = $requestService;
     }
 
-    public function getName()
+    public function getName():string
     {
         return 'wallet';
     }
 
-    public function getValue()
+    public function getValue():array
     {
         if (!isset($_SESSION['id'])) {
             return [];
@@ -48,11 +48,17 @@ class WalletVariables
                 }
             }
             $logo = '';
-            $request=$this->requestService->getRequestCollection("EUR", $symbol);
-            foreach ($request->getRequests() as $row) {
-                if($symbol===$row->getSymbol()){
-                    $logo = $row->getLogo();
+
+            if($symbol!=null) {
+                $request = $this->requestService->getRequestCollection("EUR", $symbol);
+                foreach ($request->getRequests() as $row) {
+                    if ($symbol === $row->getSymbol()) {
+                        $logo = $row->getLogo();
+                    }
                 }
+
+            }else{
+                $logo="Wallet is empty";
             }
             $result[] = ['symbol' => $symbol, 'count' => $count, 'logo' => $logo];
         }

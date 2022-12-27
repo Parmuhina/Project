@@ -14,7 +14,7 @@ class RequestService
         $this->requestRepository = $requestRepository;
     }
 
-    public function getRequestCollection(string $convert, string $symbols): RequestCollection
+    public function getRequestCollection(string $convert, ?string $symbols): RequestCollection
     {
         return $this->requestRepository->getRequest($convert, $symbols);
     }

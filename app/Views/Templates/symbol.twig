@@ -19,19 +19,21 @@
         <form action="/symbol" method="post">
             <br>
             <h1 class="text-3xl font-bold text-center text-teal-300" style="color: white">Buy/Sell
-                crypto {{ buySellSymbol }}, coin price {{ price | round(2)}} </h1>
+                crypto {{ buySellSymbol }}, coin price {{ price | round(2) }} </h1>
 
             <p class="text-black-700 text-3xl m-4" style="color: white">Your wallet data:</p>
-            <ul class="form-container text-2xl m-4">
-                <li class="list-group-item">Your cash value: {{ transactions[0].cash }}</li>
-                {% for coin in wallet %}
-                    <li class="list-group-item">{{ coin.symbol }},
-                        coin quantity {{ coin.count }}</li>
-                {% endfor %}
-            </ul>
-
+            <div class=" flex items-center justify-center">
+                <ul class="form-container text-2xl m-4 " style="width: 40%">
+                    <li class="list-group-item">Your cash value: {{ transactions[0].cash }}</li>
+                    {% for coin in wallet %}
+                        <li class="list-group-item">{{ coin.symbol }},
+                            coin quantity {{ coin.count }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
             <div>
-                <label class="px-4 py-2" style="font-size: large; color: white" for="text"><b>How many you want to buy?</b></label>
+                <label class="px-4 py-2" style="font-size: large; color: white" for="text"><b>How many you want to
+                        buy?</b></label>
                 <input type="text" placeholder="Enter how many" name="numberBuy" id="num">
                 <div class="error">
                     {{ sellError.numberBuy }}
@@ -39,7 +41,8 @@
                 </div>
             </div>
             <div>
-                <label class="px-4 py-2" style="font-size: large; color: white" for="text"><b>How many you want to sell?</b></label>
+                <label class="px-4 py-2" style="font-size: large; color: white" for="text"><b>How many you want to
+                        sell?</b></label>
                 <input type="text" placeholder="Enter how many" name="numberSell" id="num">
                 <div class="error">
                     {{ sellError.numberSell }}
@@ -51,7 +54,8 @@
             </div>
             <br>
             <button
-                    class="px-4 py-2 font-bold text-white bg-teal-600 rounded-full hover:bg-teal-500 focus:outline-none focus:shadow-outline-teal active:bg-teal-700">
+                    class="font-bold text-white rounded"
+                    style="width: 100px; height:50px; background: linear-gradient(to bottom, #FDFEFE, #03034E); ">
                 Buy/Sell
             </button>
             <br>
@@ -64,24 +68,26 @@
                 crypto {{ buySellSymbol }}</h1>
 
             <div>
-                <label class="px-4 py-2" style="font-size: large; color:white" for="text"><b>How many you want to slot?</b></label>
+                <label class="px-4 py-2" style="font-size: large; color:white" for="text"><b>How many you want to
+                        slot?</b></label>
                 <input type="text" placeholder="Enter how many" name="slot" id="slotId">
 
             </div>
 
             <br>
             <button
-                    class="px-4 py-2 font-bold text-white bg-teal-600 rounded-full hover:bg-teal-500 focus:outline-none focus:shadow-outline-teal active:bg-teal-700">
-                Slot
+                    class="font-bold text-white rounded"
+                    style="width: 100px; height:50px; background: linear-gradient(to bottom, #FDFEFE, #03034E); ">
+                Short
             </button>
 
             <br>
             <br>
         </form>
 
-        <form action="/">
-            <br>
-            <button class="px-4 py-2 font-bold text-white bg-teal-600 rounded-full hover:bg-teal-500 focus:outline-none focus:shadow-outline-teal active:bg-teal-700">
+        <form action="/" class="center">
+            <button class="font-bold text-white rounded"
+                    style="width: 100px; height:50px; background: linear-gradient(to bottom, #FDFEFE, #03034E); ">
                 To the start
             </button>
             <br>

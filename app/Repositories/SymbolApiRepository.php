@@ -88,7 +88,7 @@ class SymbolApiRepository implements SymbolRepository
     public function update(float $cash, int $id): void
     {
         (new DatabaseConnection())->getConnection()->executeStatement(
-            'UPDATE new_schema.wallet SET cash=cash+? WHERE id = ?',
+            'UPDATE user_schema.wallet SET cash=cash+? WHERE id = ?',
             [$cash, $id]
         );
     }
