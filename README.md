@@ -48,5 +48,5 @@ You can copy project code from github and use it.
 need to make refresh):**
 
 1. How project looks like
-   ![](https://github.com/Project/View.gif)
+   ![](https://github.com/Parmuhina/Project/View.gif)
 2. 
