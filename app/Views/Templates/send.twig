@@ -37,11 +37,11 @@
                 {% set rowCount=rowCount+1 %}
             {% endif %}
 
-            c            {% if rowCount>5 %}
-            {% set rowCount=1 %}
+            {% if rowCount>5 %}
+                {% set rowCount=1 %}
 
-            </div>
-        {% endif %}
+                </div>
+            {% endif %}
 
         {% endfor %}
 

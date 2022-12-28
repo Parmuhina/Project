@@ -24,11 +24,12 @@ class SendController
             'send.twig'
         );
     }
+
     public function showSendProfile(array $vars): Template
     {
-        $_SESSION['sendSymbol']=$vars['symbol'];
+        $_SESSION['sendSymbol'] = $vars['symbol'];
         return new Template(
-            'sendProfile.twig', ['sendSymbol'=>$vars['symbol']]
+            'sendProfile.twig', ['sendSymbol' => $vars['symbol']]
         );
     }
 

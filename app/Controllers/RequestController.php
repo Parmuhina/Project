@@ -13,7 +13,6 @@ class RequestController
     {
         $this->requestService = $requestService;
     }
-
     public function index(): Template
     {
         $convert = $_GET['convert'] ?? 'EUR';
