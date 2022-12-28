@@ -51,4 +51,6 @@ need to make refresh):**
    ![](https://github.com/Parmuhina/Project/blob/main/View.gif)
 2. How can buy crypto
    ![](https://github.com/Parmuhina/Project/blob/main/Buy.gif)
-4. 
+4. How send crypto
+   ![](https://github.com/Parmuhina/Project/blob/main/Send.gif)
+   
