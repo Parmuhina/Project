@@ -49,4 +49,6 @@ need to make refresh):**
 
 1. How project looks like
    ![](https://github.com/Parmuhina/Project/blob/main/View.gif)
-2. 
+2. How can buy crypto
+   ![](https://github.com/Parmuhina/Project/blob/main/Buy.gif)
+4. 
