@@ -54,4 +54,4 @@ need to make refresh):**
 4. How send crypto
    ![](https://github.com/Parmuhina/Project/blob/main/Send.gif)
 5. Registration view
-https://github.com/Parmuhina/Project/blob/master/registration.png
+![](https://github.com/Parmuhina/Project/blob/master/registration.png)
