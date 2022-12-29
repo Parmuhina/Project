@@ -20,6 +20,7 @@ class SymbolApiRepository implements SymbolRepository
             ->fetchAllAssociative();
 
         foreach ($queries as $query) {
+
             if ($query['id'] === $_SESSION['id']) {
                 $symbolCollection->add(
                     new SymbolObject(
@@ -67,7 +68,6 @@ class SymbolApiRepository implements SymbolRepository
         $response = curl_exec($curl); // Send the request, save the response
         $response = (json_decode($response)); // print json decoded response
         curl_close($curl);
-        var_dump($response);die;
         return $response;
     }
 

@@ -25,25 +25,27 @@
                 <div class="row">
             {% endif %}
 
-            <div class="px-4 py-1">
-                {% if coin.count<0 %}
-                <div class="card text-white bg-danger mb-3 shadow-xl shadow-inner-blue-700" style="max-width: 14rem; background: darkred">
+
+            {% if coin.count<0 %}
+                <div class="card text-white bg-danger mb-3 mb-3 mt-3 ml-3 mr-3 shadow-xl shadow-inner-blue-700"
+                     style="max-width: 14rem; background: darkred">
                     <div class="card-header" style="font-weight: bold">{{ coin.symbol }}: {{ coin.count }}</div>
                     <div class="card-body">
-                        <p class="card-text"><img src="{{ coin.logo }}"></p>
+                        <p class="card-text"><img src="{{ coin.logo }}" alt="Logo doesn`t exist"></p>
                     </div>
                 </div>
-            </div>
+
             {% endif %}
-                    {% if coin.count>0 %}
-                    <div class="card text-black bg-light mb-3 shadow-xl" style="max-width: 14rem;">
-                        <div class="card-header" style="font-weight: bold">{{ coin.symbol }}: {{ coin.count }}</div>
-                        <div class="card-body">
-                            <p class="card-text"><img src="{{ coin.logo }}"></p>
-                        </div>
+
+            {% if coin.count>0 %}
+                <div class="card text-black bg-light mb-3 mb-3 mt-3 ml-3 mr-3 shadow-xl" style="max-width: 14rem;">
+                    <div class="card-header" style="font-weight: bold">{{ coin.symbol }}: {{ coin.count }}</div>
+                    <div class="card-body">
+                        <p class="card-text"><img src="{{ coin.logo }}" alt="Logo doesn`t exist"></p>
                     </div>
                 </div>
-        {% endif %}
+
+            {% endif %}
 
             {% set rowCount=rowCount+1 %}
             {% if rowCount>7 %}

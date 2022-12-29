@@ -26,7 +26,6 @@ class WalletVariables
         if (!isset($_SESSION['id'])) {
             return [];
         }
-
         $service = $this->symbolService->getSymbolCollection()->getSymbols();
         $path = [];
         foreach ($service as $row) {

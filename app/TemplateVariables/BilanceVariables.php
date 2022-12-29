@@ -24,7 +24,6 @@ class BilanceVariables
         if (!isset($_SESSION['id'])) {
             return [];
         }
-
         $service = $this->symbolService->getSymbolCollection()->getSymbols();
 
         foreach ($service as $row) {

@@ -18,7 +18,7 @@ class RegisterService
     public function execute(UserObject $request): void
     {
         (new DatabaseConnection)->getConnection()->insert(
-            "new_schema.usersRegister",
+            "user_schema.usersRegister",
             [
                 "username" => $request->getUsername(),
                 "email" => $request->getEmail(),
@@ -36,16 +36,5 @@ class RegisterService
             }
         }
         return null;
-    }
-
-    public function findUsername(): array
-    {
-        $database = $this->databaseRepository->getAllDatabase()->getUsers();
-        foreach ($database as $row) {
-            if ($row->getId() === $_SESSION['id']) {
-                return $row->getUsername();
-            }
-        }
-        return [];
     }
 }

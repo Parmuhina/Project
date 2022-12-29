@@ -25,8 +25,6 @@ class SymbolService
     public function insertBuySell(string $valueBuy, string $valueSell, string $symbol, int $userId)
     {
         $price = $this->requestRepository->getRequest("EUR", $symbol)->getRequests()[0]->getPrice();
-        $_SESSION['price']=$price;
-
         if (strlen($valueBuy) != 0) {
             $this->symbolRepository->add([$symbol, $price, (floatval($valueBuy)), (-1) * (floatval($valueBuy)) * $price, $userId]);
 

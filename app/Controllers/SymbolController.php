@@ -2,13 +2,9 @@
 
 namespace App\Controllers;
 
-use App\Models\Collections\SymbolCollection;
-use App\Repositories\DatabaseApiRepository;
-use App\Repositories\DatabaseConnection;
 use App\Repositories\RequestRepository;
 use App\Services\SymbolService;
 use App\TemplateVariables\WalletVariables;
-use App\Validation\ValidationSell;
 use App\Views\Redirect;
 use App\Views\Template;
 
@@ -42,7 +38,6 @@ class SymbolController
 
     public function buyCurrency(): Redirect
     {
-        $validation = new ValidationSell();
         $symbolService = $this->symbolService;
         $cash = 0;
         foreach ($symbolService->getSymbolCollection()->getSymbols() as $user) {
@@ -56,7 +51,7 @@ class SymbolController
                 $sellCount = $row['count'];
             }
         }
-        $validation->validationSell($_POST, $sellCount, $cash);
+        $this->validationSell($_POST, $sellCount, $cash);
 
         if (!empty ($_SESSION['sellError'])) {
             return new Redirect("/symbol/{$_SESSION["buySellSymbol"]}");
@@ -88,5 +83,30 @@ class SymbolController
 
         unset ($_SESSION['buySellSymbol']);
         return new Redirect('/');
+    }
+
+    private function validationSell(array $post, float $sellCount, float $cash): void
+    {
+        unset($_SESSION['sellError']);
+
+        if (empty ($_SESSION['id'])) {
+            $_SESSION['sellError']['number'] = 'You need to authorize.';
+        }
+
+        if ((floatval($post['numberBuy'])) < 0) {
+            $_SESSION['sellError']['numberBuy'] = 'Number of coins need to be more than 0';
+        }
+
+        if ((floatval($post['numberBuy']) * $_SESSION['price']) > $cash) {
+            $_SESSION['sellError']['numberBuyCost'] = 'You don`t have currency for pay bill';
+        }
+
+        if ((floatval($post['numberSell'])) > $sellCount && strlen($post['numberSell']) != 0) {
+            $_SESSION['sellError']['numberSell'] = 'Number of sell coins need to be less or equal that you have got';
+        }
+
+        if (strlen($post['numberBuy']) === 0 && strlen($post['numberSell']) === 0) {
+            $_SESSION['sellError']['numbers'] = 'One of two number of coins need to be not empty';
+        }
     }
 }

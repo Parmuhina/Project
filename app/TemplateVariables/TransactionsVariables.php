@@ -13,18 +13,17 @@ class TransactionsVariables
         $this->symbolService = $symbolService;
     }
 
-    public function getName()
+    public function getName():string
     {
         return 'transactions';
     }
 
-    public function getValue()
+    public function getValue():array
     {
         $result = [];
         if (!isset($_SESSION['id'])) {
             return [];
         }
-
         $service = $this->symbolService->getSymbolCollection()->getSymbols();
 
         foreach ($service as $row) {
